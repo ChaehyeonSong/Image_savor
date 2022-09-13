@@ -8,7 +8,7 @@ std::string pkg_path = ros::package::getPath("save_img");
 void imageCallback(const sensor_msgs::ImageConstPtr& msg ){
     std::cout<<"start callback\n";
     CRawImage* image = new CRawImage(msg->width,msg->height,3);
-    if(msg->step*msg->height ==3){
+    if(msg->step/msg->width ==3){
         memcpy(image->data,(void*)&msg->data[0],msg->step*msg->height);
     }
     else {
